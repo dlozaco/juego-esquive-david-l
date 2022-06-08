@@ -1,22 +1,27 @@
-input.onButtonPressed(Button.A, function on_button_pressed_a() {
-    sprite.move(-1)
+input.onButtonPressed(Button.A, function () {
+    if (true) {
+    	
+    } else {
+        sprite.move(-1)
+    }
 })
-input.onButtonPressed(Button.B, function on_button_pressed_b() {
+input.onButtonPressed(Button.B, function () {
     sprite.move(1)
 })
-let malo_x = 0
-let malo : game.LedSprite = null
-let sprite : game.LedSprite = null
+let malo: game.LedSprite = null
+let malox = 0
+let sprite: game.LedSprite = null
 basic.clearScreen()
 sprite = game.createSprite(2, 4)
-loops.everyInterval(500, function on_every_interval() {
+basic.forever(function () {
+    malox = randint(0, 4)
+    malo = game.createSprite(malox, 0)
+    basic.pause(1000)
+    if (malo.isTouching(sprite)) {
+        basic.showString("FIN")
+    }
+    malo.delete()
+})
+loops.everyInterval(200, function () {
     malo.change(LedSpriteProperty.Y, 1)
-})
-loops.everyInterval(2000, function on_every_interval2() {
-    
-    malo_x = randint(0, 4)
-    malo = game.createSprite(malo_x, 0)
-})
-basic.forever(function on_forever() {
-    
 })
