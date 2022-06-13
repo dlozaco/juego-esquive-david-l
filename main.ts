@@ -14,13 +14,13 @@ basic.forever(function () {
     malo = game.createSprite(malox, 0)
     basic.pause(1000)
     if (malo.isTouching(sprite)) {
-        for (let index = 0; index < 2; index++) {
-            sprite.delete()
-            malo.delete()
-            basic.showIcon(IconNames.No)
-        }
+        sprite.delete()
+        malo.delete()
+        game.gameOver()
     }
     malo.delete()
+    game.addScore(1)
+    sprite.set(LedSpriteProperty.X, randint(1, 3))
 })
 basic.forever(function () {
     if (sprite.get(LedSpriteProperty.X) == 4) {
@@ -29,6 +29,12 @@ basic.forever(function () {
     } else if (sprite.get(LedSpriteProperty.X) == 0) {
         sprite.set(LedSpriteProperty.X, 4)
         basic.pause(1000)
+    }
+})
+basic.forever(function () {
+    if (game.isGameOver()) {
+        sprite.delete()
+        malo.delete()
     }
 })
 loops.everyInterval(200, function () {
