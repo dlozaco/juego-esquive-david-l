@@ -1,12 +1,8 @@
 input.onButtonPressed(Button.A, function () {
-    if (true) {
-    	
-    } else {
-        sprite.move(-1)
-    }
+    sprite.change(LedSpriteProperty.X, -1)
 })
 input.onButtonPressed(Button.B, function () {
-    sprite.move(1)
+    sprite.change(LedSpriteProperty.X, 1)
 })
 let malo: game.LedSprite = null
 let malox = 0
@@ -18,9 +14,22 @@ basic.forever(function () {
     malo = game.createSprite(malox, 0)
     basic.pause(1000)
     if (malo.isTouching(sprite)) {
-        basic.showString("FIN")
+        for (let index = 0; index < 2; index++) {
+            sprite.delete()
+            malo.delete()
+            basic.showIcon(IconNames.No)
+        }
     }
     malo.delete()
+})
+basic.forever(function () {
+    if (sprite.get(LedSpriteProperty.X) == 4) {
+        sprite.set(LedSpriteProperty.X, 0)
+        basic.pause(1000)
+    } else if (sprite.get(LedSpriteProperty.X) == 0) {
+        sprite.set(LedSpriteProperty.X, 4)
+        basic.pause(1000)
+    }
 })
 loops.everyInterval(200, function () {
     malo.change(LedSpriteProperty.Y, 1)
