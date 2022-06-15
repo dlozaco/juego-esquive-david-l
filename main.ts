@@ -26,18 +26,18 @@ basic.forever(function () {
     sprite.set(LedSpriteProperty.X, randint(1, 3))
 })
 basic.forever(function () {
-    if (game.isGameOver()) {
-        sprite.delete()
-        malo.delete()
-    }
-})
-basic.forever(function () {
     if (sprite.get(LedSpriteProperty.X) == 4) {
         sprite.set(LedSpriteProperty.X, 0)
         basic.pause(1000)
     } else if (sprite.get(LedSpriteProperty.X) == 0) {
         sprite.set(LedSpriteProperty.X, 4)
         basic.pause(1000)
+    }
+})
+basic.forever(function () {
+    if (game.isGameOver()) {
+        sprite.delete()
+        malo.delete()
     }
 })
 loops.everyInterval(200, function () {
